@@ -1,0 +1,33 @@
+{
+  "name": "products-view",
+  "version": "0.1.0",
+  "private": true,
+  "description": "a simple react/express/aws-dynamodb web app that displays a list of products",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moeslami/produts-view"
+  },
+  "scripts": {
+    "start:server": "DEBUG=products-view:* node ./bin/www",
+    "watch:client": "npx babel --watch client --out-dir public/scripts --presets react-app/prod",
+    "start": "concurrently npm:start:server npm:watch:client",
+    "db:up": "node -e 'require(\"./db\").up()'",
+    "db:down": "node -e 'require(\"./db\").down()'",
+    "db:seed": "node -e 'require(\"./db/products\").seedProductsTable()'",
+    "db:rows": "node -e 'require(\"./db/products\").getAllProducts()'"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.437.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "concurrently": "^4.1.0"
+  }
+}
